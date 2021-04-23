@@ -9,8 +9,6 @@
  ## 2021-04-22
  ### room_exam
 
-Today I Learned
-
 1. Room 이란 Sqlite를 대체하기 위해 만들어진 라이브러리
 2. Room 에서 Primary Key에 해당하는 변수 위에 @PrimaryKey 어노테이션을 붙여주면 된다. (autoGenerate = true)를 옆에 붙여주면 자동으로 값이 1씩 증가한다.
 3. alt + insert를 누르면 constructor, getter, setter, tostring 재정의 기능들을 자동으로 생성 가능하다.
@@ -20,14 +18,10 @@ Today I Learned
 ## 2021-04-23
 ### room_exam_kotlin
 
-Today I Learned
-
 1. kotlin-android-extensions - kotlin에서 지원하는 플러그인으로, import만 해주면 자동으로 view를 찾아주고, 변수로 생성할 필요가 없어진다.
 2. data class - kotlin에서 데이터 보관 목적으로 만든 클래스로, toString(), hashCode(), equals(), copy() 메소드를 자동으로 생성해준다.
 
 ### LiveData
-
-Today I Learned
 
 1. LiveData - Data의 변경을 관찰할 수 있는 DataHolder 클래스
 2. LiveData를 쓰는 이유는 ? 
@@ -39,4 +33,8 @@ Today I Learned
 + **최신 데이터 유지** - 수명주기가 비활성화되면 다시 활성화 될 때 최신 데이터를 수신한다.
 + **적절한 구성 변경** - 기기 회전과 같은 구성 변경으로 인해 활동 또는 프래그먼트가 다시 생성되면 사용 가능한 최신 데이터를 즉시 받게 된다.
 + **리소스 공유** - 앱에서 시스템 서비스를 공유할 수 있도록 싱글톤 패턴을 사용하는 LiveData 객체를 확장하여 시스템 서비스를 래핑할 수 있습니다.
+
+### Room 비동기 처리
+
+기존의 코드에서는 메인 쓰레드에서 DB조작을 허용하는```allowMainThreadQueries()``` 옵션을 DB 생성시에 주었는데, 이를 비동기로 처리하는 방법을 배운다.
 
