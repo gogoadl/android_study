@@ -17,3 +17,10 @@
 4. Room 에서 사용 할 Entity로 사용하기 위해 2번에서 생성한 클래스 선언부 위에 @Entity 어노테이션을 붙여준다.
 5. DAO Interface 생성 후 @Dao 어노테이션을 붙여주면 Dao의 기능을 하도록 한다.
  
+## 2021-04-23
+### room_exam_kotlin
+
+새로 알게 된 것들
+
+1. kotlin-android-extensions - kotlin에서 지원하는 플러그인으로, import만 해주면 자동으로 view를 찾아주고, 변수로 생성할 필요가 없어진다.
+2. data class - kotlin에서 데이터 보관 목적으로 만든 클래스로, toString(), hashCode(), equals(), copy() 메소드를 자동으로 생성해준다.
