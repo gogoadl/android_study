@@ -3,8 +3,11 @@ package com.hyeonwoo.room_exam_kotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +23,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         add_button.setOnClickListener {
-            db.todoDao().insert(Todo(todo_edit.text.toString()))
+            lifecycleScope.launch(Dispatchers.IO) {
+                db.todoDao().insert(Todo(todo_edit.text.toString())) 
+            }
         }
     }
 }
