@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.room.Room;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mResultTextView = findViewById(R.id.result_text);
 
         final AppDatabase db = Room.databaseBuilder(this, AppDatabase.class, "todo-db")
-                .allowMainThreadQueries() // MainThread에서 db조작사용 (실무에서는 사용하지 않는다)
+//                .allowMainThreadQueries() // MainThread에서 db조작사용 (실무에서는 사용하지 않는다) -> asyncTask로 대체
                 .build(); // db객체를 생성
 
         // UI 갱신
@@ -36,9 +37,24 @@ public class MainActivity extends AppCompatActivity {
 
         // 버튼 클릭시 DB에 Insert
         findViewById(R.id.add_button).setOnClickListener(v -> {
-            db.todoDao().insert(new Todo(mTodoEditText.getText().toString()));
-//            mResultTextView.setText(db.todoDao().getAll().toString()); // LiveData에서 관찰하도록 변경됨
+            // Background에서 DB 처리를 위해 asyncTask 사용
+            new InsertAsyncTask(db.todoDao()).execute(new Todo(mTodoEditText.getText().toString()));
         });
 
     }
+
+    private static class InsertAsyncTask extends AsyncTask<Todo, Void, Void> {
+        private TodoDao mTodoDao;
+
+        public InsertAsyncTask (TodoDao todoDao) {
+            this.mTodoDao = todoDao;
+        }
+
+        @Override
+        protected Void doInBackground(Todo... todos) {
+            mTodoDao.insert(todos[0]);
+            return null;
+        }
+    }
+
 }
