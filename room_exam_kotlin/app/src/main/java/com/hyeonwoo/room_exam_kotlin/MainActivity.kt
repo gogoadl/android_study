@@ -2,10 +2,11 @@ package com.hyeonwoo.room_exam_kotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.lifecycleScope
-import androidx.room.Room
+import com.hyeonwoo.room_exam_kotlin.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,13 +14,12 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding.lifecycleOwner = this // LiveData를 활용하기 위해
 
         val viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-
-        viewModel.getAll().observe(this, Observer {
-            result_text.text = it.toString()
-        })
+        binding.viewModel = viewModel
 
         add_button.setOnClickListener {
             lifecycleScope.launch(Dispatchers.IO) {

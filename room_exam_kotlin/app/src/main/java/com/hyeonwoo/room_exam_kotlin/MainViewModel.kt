@@ -8,6 +8,12 @@ import androidx.room.Room
 class MainViewModel(application: Application): AndroidViewModel(application) {
     private val db = Room.databaseBuilder(application, AppDatabase::class.java, "tood-db").build()
 
+    var todos : LiveData<List<Todo>>
+
+    init {
+        todos = getAll()
+    }
+
     fun getAll(): LiveData<List<Todo>> {
         return db.todoDao().getAll();
     }
