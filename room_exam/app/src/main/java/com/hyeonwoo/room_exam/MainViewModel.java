@@ -12,7 +12,9 @@ import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
 
-    AppDatabase db;
+    private AppDatabase db;
+    public LiveData<List<Todo>> todos;
+
 
     public MainViewModel(@NonNull Application application) {
         super(application);
@@ -20,6 +22,7 @@ public class MainViewModel extends AndroidViewModel {
         db = Room.databaseBuilder(application, AppDatabase.class, "todo-db")
 //                .allowMainThreadQueries() // MainThread에서 db조작사용 (실무에서는 사용하지 않는다) -> asyncTask로 대체
                 .build(); // db객체를 생성
+        todos = getAll();
     }
 
     public LiveData<List<Todo>> getAll() {

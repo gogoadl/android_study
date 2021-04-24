@@ -26,6 +26,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    dataBinding { // dataBinding 사용 명시
+        enabled = true
+    }
 }
 
 dependencies {
