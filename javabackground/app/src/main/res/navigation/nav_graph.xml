@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/executorFragment">
+
+    <fragment
+        android:id="@+id/executorFragment"
+        android:name="com.hyeonwoo.java_background.ui.ExecutorFragment"
+        android:label="fragment_executor"
+        tools:layout="@layout/fragment_executor" />
+</navigation>
