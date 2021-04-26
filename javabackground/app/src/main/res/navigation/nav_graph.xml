@@ -10,4 +10,9 @@
         android:name="com.hyeonwoo.java_background.ui.ExecutorFragment"
         android:label="fragment_executor"
         tools:layout="@layout/fragment_executor" />
+    <fragment
+        android:id="@+id/jobFragment"
+        android:name="com.hyeonwoo.java_background.ui.JobFragment"
+        android:label="fragment_job"
+        tools:layout="@layout/fragment_job" />
 </navigation>

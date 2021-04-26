@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -28,7 +29,7 @@ public class ExecutorFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_executor, container, false);
         binding = FragmentExecutorBinding.bind(view);
-        return binding.getRoot();
+        return binding.getRoot(); // 여기서 return한 View 객체는 onViewCreated에서 받을 수 있다.
     }
 
     @Override
@@ -38,14 +39,10 @@ public class ExecutorFragment extends Fragment {
         viewModel = new ViewModelProvider(requireActivity(),
                 new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication()))
                 .get(MainViewModel.class);
-        int number = 0;
-        binding.button.setOnClickListener(v ->
-                viewModel.longTask(result -> {
-                    if (result instanceof Result.Success) {
-                        binding.progress.setProgress(((Result.Success<Integer>) result).data);
-                    } else if (result instanceof Result.Error){
-//                        Toast.makeText(TAG, ((Result.Error<Integer>) result).exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-        }));
+
+        // Fragment의 Lifecycle 동안에만 Callback으로 사용
+        viewModel.progressLiveData.observe(getViewLifecycleOwner(), progress -> binding.progress.setProgress(progress));
+
+        binding.button.setOnClickListener(v -> viewModel.longTask());
     }
 }
