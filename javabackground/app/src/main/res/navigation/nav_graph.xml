@@ -15,4 +15,9 @@
         android:name="com.hyeonwoo.java_background.ui.JobFragment"
         android:label="fragment_job"
         tools:layout="@layout/fragment_job" />
+    <fragment
+        android:id="@+id/workFragment"
+        android:name="com.hyeonwoo.java_background.ui.WorkFragment"
+        android:label="fragment_work"
+        tools:layout="@layout/fragment_work" />
 </navigation>

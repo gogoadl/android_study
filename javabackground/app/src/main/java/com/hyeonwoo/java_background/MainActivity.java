@@ -23,5 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding.buttonExecutor.setOnClickListener(v -> { navController.navigate(R.id.executorFragment); });
         binding.buttonJob.setOnClickListener(v -> { navController.navigate(R.id.jobFragment); });
+        binding.buttonWork.setOnClickListener(v -> { navController.navigate(R.id.workFragment); });
     }
 }

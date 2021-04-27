@@ -34,4 +34,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/button_work"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Work"
+        app:layout_constraintEnd_toStartOf="@+id/button_job"
+        app:layout_constraintStart_toEndOf="@+id/button_executor"
+        tools:layout_editor_absoluteY="680dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
