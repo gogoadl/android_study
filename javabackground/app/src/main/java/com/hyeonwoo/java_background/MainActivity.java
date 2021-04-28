@@ -10,7 +10,7 @@ import android.view.View;
 import com.hyeonwoo.java_background.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    // Java는 클래스 파일안에 public 객체가 하나만 존재해야함
+    // Java는 클래스 파일안에 public 객체가 하나만 존재해야함 ._.
     private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
