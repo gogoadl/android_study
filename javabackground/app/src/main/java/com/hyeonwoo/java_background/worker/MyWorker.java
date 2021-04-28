@@ -23,6 +23,9 @@ public class MyWorker extends Worker {
 
     public MyWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
+
+        notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
         createNotificationChannel();
 
     }
@@ -30,7 +33,6 @@ public class MyWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
         createNotificationChannel();
 
