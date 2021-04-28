@@ -9,6 +9,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.work.Data;
+import androidx.work.ForegroundInfo;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -23,18 +24,24 @@ public class MyWorker extends Worker {
 
     public MyWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
-
-        notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
-        createNotificationChannel();
-
     }
 
     @NonNull
     @Override
     public Result doWork() {
+        notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
         createNotificationChannel();
+
+        Notification notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle("WorkManager long task")
+                .setProgress(100, 0, false)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .build();
+
+        ForegroundInfo info = new ForegroundInfo(3, notification);
+        setForegroundAsync(info);
 
         try {
             int num = 0;
