@@ -20,4 +20,9 @@
         android:name="com.hyeonwoo.java_background.ui.WorkFragment"
         android:label="fragment_work"
         tools:layout="@layout/fragment_work" />
+    <fragment
+        android:id="@+id/foregroundServiceFragment"
+        android:name="com.hyeonwoo.java_background.ui.ForegroundServiceFragment"
+        android:label="fragment_foreground_service"
+        tools:layout="@layout/fragment_foreground_service" />
 </navigation>
